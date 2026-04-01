@@ -6,12 +6,13 @@ import support.cse131.NotYetImplementedException;
 
 public class Quiz {
 	
+	private Question[] questions;
 	/**
 	 * Constructor
 	 * @param questions
 	 */
 	public Quiz(Question[] questions) {
-		throw new NotYetImplementedException();
+		this.questions=questions;
 	}
 	
 	/**
@@ -30,7 +31,11 @@ public class Quiz {
 	 * @return int number of total points
 	 */
 	public int getTotalPoints() {
-		throw new NotYetImplementedException();
+		int total=0;
+		for(Question i:questions){
+			total+=i.getPoints();
+		}
+		return total;
 	}
 	
 	/**
@@ -41,7 +46,15 @@ public class Quiz {
 	 * @param in Scanner object to feed into getUserAnswer
 	 */
 	public void takeQuiz(Scanner in) {
-		throw new NotYetImplementedException();
+		int totalScore=0;
+		for (Question i:questions){
+			i.displayPrompt();
+			String ans=getUserAnswer(in);
+			int score = i.checkAnswer(ans);
+			System.out.println("You've earned " + score + " points.");
+			totalScore+=score;
+		}
+		System.out.println("You have earned " + totalScore + " points.");
 	}
 	
 	
